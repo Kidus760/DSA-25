@@ -11,9 +11,9 @@ Each problem is organized into its **own package**, with a dedicated implementat
 ## Problem Combination Details
 
 **Problem Combination #25 includes:**
-- **Problem #52** – Multi-Class Boarding Queue System *(Hard)*
-- **Problem #19** – The Live Gaming Leaderboard *(Medium)*
-- **Problem #59** – The VIP Spender Tracker *(Easy)*
+- **Problem #19** – The Live Gaming Leaderboard 
+- **Problem #52** – Multi-Class Boarding Queue System 
+- **Problem #59** – The VIP Spender Tracker
 
 ---
 
@@ -40,8 +40,16 @@ Each problem folder contains:
 
 ## Team Members & Contributions
 
+### **Yabsega Demis**
+- **Problem #19 – The Live Gaming Leaderboard**
+- Designed a real-time leaderboard using a Min-Heap of size K.
+- Optimized score updates with **O(log K)** complexity.
+- Implemented `INIT`, `SCORE`, and `SHOW_TOP` commands.
+
+---
+
 ### **Kidus Michael**
-- **Problem #52 – Multi-Class Boarding Queue System (Hard)**
+- **Problem #52 – Multi-Class Boarding Queue System**
 - Implemented boarding logic using an array of queues for seven priority levels.
 - Added group boarding support using linked lists.
 - Managed gate capacity constraints.
@@ -49,16 +57,8 @@ Each problem folder contains:
 
 ---
 
-### **Yabsega Demis**
-- **Problem #19 – The Live Gaming Leaderboard (Medium)**
-- Designed a real-time leaderboard using a Min-Heap of size K.
-- Optimized score updates with **O(log K)** complexity.
-- Implemented `INIT`, `SCORE`, and `SHOW_TOP` commands.
-
----
-
 ### **Dibora Mulatu**
-- **Problem #59 – The VIP Spender Tracker (Easy)**
+- **Problem #59 – The VIP Spender Tracker**
 - Built customer spend tracking using a HashMap.
 - Maintained a live Top 3 VIP list using a Min-Heap.
 - Implemented `PURCHASE` and `SHOW_VIP` operations.
