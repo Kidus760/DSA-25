@@ -1,3 +1,4 @@
+package problem_52;
 import java.io.*;
 import java.util.*;
 
