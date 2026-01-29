@@ -22,7 +22,6 @@ Each problem is organized into its **own package**, with a dedicated implementat
 - **Core Data Structures:**
   - Queues
   - Linked Lists
-  - Hash Maps
   - Min-Heaps (Priority Queues)
 - **Development Tools:**
   - JDK 8 or later
