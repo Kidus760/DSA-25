@@ -8,16 +8,13 @@ public class Main {
         final String name;
         final int cls;          
         final String groupId;  
-        final long seq;        
 
-        Passenger(String name, int cls, String groupId, long seq) {
+        Passenger(String name, int cls, String groupId) {
             this.name = name;
             this.cls = cls;
             this.groupId = groupId;
-            this.seq = seq;
         }
     }
-
 
     static class GroupNode {
         Passenger p;
@@ -63,7 +60,6 @@ public class Main {
         List<Passenger> boarded = new ArrayList<>();
 
         int gateCapacity = 1;
-        long seq = 0;
 
         while ((line = br.readLine()) != null) {
             line = line.trim();
@@ -101,7 +97,7 @@ public class Main {
                     }
                     String groupId = (parts.length == 4) ? parts[3] : null;
 
-                    Passenger p = new Passenger(name, cls, groupId, seq++);
+                    Passenger p = new Passenger(name, cls, groupId);
                     queues[cls].addLast(p);
 
                     if (groupId != null) {
@@ -122,29 +118,19 @@ public class Main {
                         if (next == null) break;
 
                         if (next.groupId == null) {
-                            // board single
-                            pollSpecificPassenger(queues[next.cls], next);
+                            pollSpecificPassenger(queues[next.cls]);
                             boarded.add(next);
                             boardedThisTick.add(next);
                             remaining--;
                         } else {
                             GroupList gl = groups.get(next.groupId);
-                            int groupSize = (gl == null) ? 1 : gl.size;
+                            int groupSize = gl.size;
 
-                           
                             if (groupSize > remaining && !boardedThisTick.isEmpty()) {
                                 break;
                             }
 
-                            
-                            Set<Passenger> groupMembers = new LinkedHashSet<>();
-                            if (gl != null) {
-                                for (Passenger gp : gl.members()) groupMembers.add(gp);
-                            } else {
-                                groupMembers.add(next);
-                            }
-
-                            for (Passenger gp : groupMembers) {
+                            for (Passenger gp : gl.members()) {
                                 boolean removed = removeFromAllQueues(queues, gp);
                                 if (removed) {
                                     boarded.add(gp);
@@ -152,7 +138,6 @@ public class Main {
                                 }
                             }
 
-                            
                             remaining = Math.max(0, remaining - groupSize);
                         }
                     }
@@ -198,13 +183,8 @@ public class Main {
         return null;
     }
 
-    static void pollSpecificPassenger(LinkedList<Passenger> queue, Passenger p) {
-        Passenger first = queue.peekFirst();
-        if (first == p) {
-            queue.pollFirst();
-        } else {
-            queue.remove(p);
-        }
+    static void pollSpecificPassenger(LinkedList<Passenger> queue) {
+        queue.pollFirst();
     }
 
     static boolean removeFromAllQueues(LinkedList<Passenger>[] queues, Passenger target) {
@@ -212,7 +192,7 @@ public class Main {
             Iterator<Passenger> it = queues[cls].iterator();
             while (it.hasNext()) {
                 Passenger p = it.next();
-                if (p == target) { // reference equality (same object)
+                if (p == target) {
                     it.remove();
                     return true;
                 }
